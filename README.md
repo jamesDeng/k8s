@@ -23,6 +23,6 @@
 
 目录说明
 
-[aliyun install](./aliyun install)
+[aliyun_install](./aliyun_install)
 阿里云上安装 k8s 1.10 版本
 
