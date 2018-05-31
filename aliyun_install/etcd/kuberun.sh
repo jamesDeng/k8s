@@ -122,6 +122,100 @@ public::main::upgrade_nodes()
             bash $PKG/$RUN/$RUN_VERSION/upgrade.sh --role node"
     done
 }
+
+public::common::parse_args(){
+    while [[ $# -gt 0 ]]
+    do
+    key="$1"
+
+    case $key in
+        --kube-version)
+            export KUBE_VERSION=$2
+            shift
+        ;;
+        --kubeadm-version)
+            export KUBEADM_VERSION=$2
+            shift
+        ;;
+        --docker-version)
+            export DOCKER_VERSION=$2
+            shift
+        ;;
+        --etcd-version)
+            export ETCD_VERSION=$2
+            shift
+        ;;
+        --role)
+            export ROLE=$2
+            shift
+        ;;
+        --key-id)
+            export KEY_ID=$2
+            shift
+        ;;
+        --key-secret)
+            export KEY_SECRET=$2
+            shift
+        ;;
+        --hosts)
+            export HOSTS=$2
+            shift
+        ;;
+        --endpoint)
+            export ENDPOINT=$2
+            shift
+        ;;
+        --token)
+            export TOKEN=$2
+            shift
+        ;;
+        --extra-sans)
+            export EXTRA_SANS=$2
+            shift
+        ;;
+        --apiserver-lb)
+            export APISERVER_LB=$2
+            shift
+        ;;
+        --container-cidr)
+            export CIDR=$2
+            shift
+        ;;
+        --etcd-hosts)
+            export ETCD_HOSTS=$2
+            shift
+        ;;
+        --load-images)
+            export LOAD_IMAGES=$2
+            shift
+        ;;
+        --cluster-ca)
+            export CLUSTER_CA=$2
+            shift
+        ;;
+        --cluster-cakey)
+            export CLUSTER_CAKEY=$2
+            shift
+        ;;
+        --client-ca)
+            export CLIENT_CA=$2
+            shift
+        ;;
+        --force)
+            export FORCE="--force"
+        ;;
+        --gpu-enabled)
+            export GPU_ENABLED=1
+        ;;
+        *)
+            # unknown option
+            public::common::log "unkonw option [$key]"
+        ;;
+    esac
+    shift
+    done
+}
+
 main()
 {
     public::common::parse_args "$@"
