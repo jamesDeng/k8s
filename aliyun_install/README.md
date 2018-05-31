@@ -6,15 +6,13 @@
 
 ##服务器准备说明
 
-1.安装的ECS系统为 centos 7.4，使用阿里VPC网络，打通所有ECS之间的SSH通道，并且能够实现公钥登录，避免安装过程中频繁输入密码。
+1. 安装的ECS系统为 centos 7.4，使用阿里VPC网络，打通所有ECS之间的SSH通道，并且能够实现公钥登录，避免安装过程中频繁输入密码。
+2. 使用 172.16.0.188 做为总控机，将本例中所以文件copy到/opt目录下
+3. 服务器列表：
 
-2.使用 172.16.0.188 做为总控机，将本例中所以文件copy到/opt目录下
-
-3.服务器列表：
-|k8s-master|172.16.0.188|master and etcd
-|---|---|---
+|k8s-master|172.16.0.188|master and etcd|
+|---|---|----
 |k8s-slave1|172.16.0.189|node and etcd
-|---|---|---
 |k8s-slave2|172.16.0.190|node and etcd
 
 
@@ -22,7 +20,10 @@
 使用了[玩转阿里云上Kubernetes 1.7.2 高可用部署](https://yq.aliyun.com/articles/221714?spm=a2c4e.11153940.blogcont562459.26.5a531c05GqTHSj)中的自动化部署脚本，但是由于并不支持高版本的etcd版本所以改了一下。
 
 1.解压安装包，执行下面命令安装
+```Bash
+chmod 7777 kuberun.sh
 ./kuberun.sh --role deploy-etcd --hosts 172.16.0.188,172.16.0.189,172.16.0.190 --etcd-version v3.2.18
+```
 
 2.验证安装是成功
 通过ps -eaf|grep etcd查看进程是否正常启动。

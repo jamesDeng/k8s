@@ -39,7 +39,7 @@ public::common::os_env()
 
 public::common::os_env
 
-public::common::region
+#public::common::region
 
 # 首先从本地读取相应版本的tar包。当所需要的安装包不存在的时候
 # 如果设置了参数PKG_FILE_SERVER，就从该Server上下载。
